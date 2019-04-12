@@ -22,13 +22,14 @@ reload_listener(){
 }
 
 create_database(){
- gosu oracle dbca -silent -createDatabase -templateName General_Purpose.dbc -gdbname ${ORACLE_SID} -sid ${ORACLE_SID} -responseFile NO_VALUE -characterSet AL32UTF8  -emConfiguration LOCAL -automaticMemoryManagement false -memoryPercentage $INIT_MEM_PST -redoLogFileSize 100 -recoveryAreaDestination NONE -databaseType MULTIPURPOSE -pdbAdminPassword oracle -sysPassword oracle -systemPassword oracle
+ gosu oracle dbca -silent -createDatabase -templateName General_Purpose.dbc -gdbname ${ORACLE_SID} -sid ${ORACLE_SID} -responseFile NO_VALUE -characterSet ZHS16GBK  -emConfiguration LOCAL -automaticMemoryManagement false -memoryPercentage $INIT_MEM_PST -redoLogFileSize 100 -recoveryAreaDestination NONE -databaseType MULTIPURPOSE -pdbAdminPassword oracle -sysPassword oracle -systemPassword oracle
 }
 
 start_database(){
  gosu oracle sqlplus -silent /nolog << EOF
  connect sys/oracle as sysdba;
  startup;
+ 
  exit;
 EOF
 }
